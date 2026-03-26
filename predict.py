@@ -12,21 +12,7 @@ MODEL_ID = "black-forest-labs/FLUX.2-klein-9B"
 
 class Predictor(BasePredictor):
     def setup(self) -> None:
-        print(f"Downloading/Loading {MODEL_ID} weights...")
-
-        # Enable ultra-fast downloading
-        os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "1"
-
-        # Securely pulls the token from the Replicate environment variable
-        hf_token = os.environ.get("HF_TOKEN")
-
-        snapshot_download(
-            repo_id=MODEL_ID,
-            ignore_patterns=["*.pt", "*.bin"],
-            token=hf_token
-        )
-
-        print("Loading pipeline into VRAM...")
+        print(f"Loading {MODEL_ID} pipeline...")
         self.pipe = Flux2KleinPipeline.from_pretrained(
             MODEL_ID,
             torch_dtype=torch.bfloat16
