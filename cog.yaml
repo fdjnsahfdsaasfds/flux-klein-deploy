@@ -1,0 +1,20 @@
+build:
+  gpu: true
+  cuda: "12.1"
+  system_packages:
+    - "ffmpeg"
+  python_version: "3.11"
+  python_packages:
+    - "torch==2.3.1"
+    - "torchvision"
+    - "transformers"
+    - "accelerate"
+    - "sentencepiece"
+    - "hf-transfer"
+    - "huggingface-hub"
+    - "requests"
+    - "peft"
+    - "protobuf"
+  run:
+    - "pip install git+https://github.com/huggingface/diffusers.git"
+predict: "predict.py:Predictor"
